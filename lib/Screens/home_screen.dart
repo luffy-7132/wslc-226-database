@@ -14,7 +14,7 @@ class Home_Screen extends StatefulWidget {
   State<Home_Screen> createState() => _Home_ScreenState();
 }
 
-enum Fruit { apple, banana }
+enum Fruit { apple, banana }        
 
 class _Home_ScreenState extends State<Home_Screen> {
   TextEditingController titleController = TextEditingController();
