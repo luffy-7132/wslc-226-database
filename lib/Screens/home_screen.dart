@@ -32,11 +32,12 @@ class _Home_ScreenState extends State<Home_Screen> {
             : Colors.cyanAccent,
         actions: [
           Switch(
-              value: context.watch<ThemeProvider>().themeValue,
-              onChanged: (value) {
-                Provider.of<ThemeProvider>(context, listen: false).themeValue =
-                    value;
-              }),
+            value: context.watch<ThemeProvider>().themeValue,
+            onChanged: (value) {
+              Provider.of<ThemeProvider>(context, listen: false).themeValue =
+                  value;
+            },
+          ),
         ],
       ),
       body: Consumer<NotesProvider>(
@@ -80,7 +81,9 @@ class _Home_ScreenState extends State<Home_Screen> {
                     },
                   );
                 },
-                leading: Text(index.toString()),
+                leading: Text(
+                  index.toString(),
+                ),
                 title: Text(arrNotes[index].title),
                 subtitle: Text(arrNotes[index].desc),
                 trailing: IconButton(
@@ -115,9 +118,12 @@ class _Home_ScreenState extends State<Home_Screen> {
                       Custom_Widgets.custom_button(
                         'Add',
                         () {
-                          context.read<NotesProvider>().addNotes(Notes_Model(
-                              title: titleController.text,
-                              desc: descController.text));
+                          context.read<NotesProvider>().addNotes(
+                                Notes_Model(
+                                  title: titleController.text,
+                                  desc: descController.text,
+                                ),
+                              );
                           titleController.clear();
                           descController.clear();
                           Navigator.pop(context);

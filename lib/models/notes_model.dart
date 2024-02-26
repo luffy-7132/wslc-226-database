@@ -9,7 +9,7 @@ class Notes_Model {
 
   Notes_Model({this.id, required this.title, required this.desc});
 
-  ///2 func tomap , frommap
+  ///2 func to map , from map
   factory Notes_Model.fromMap(Map<String, dynamic> map) {
     return Notes_Model(
       id: map[DbHelper.Column_Id],

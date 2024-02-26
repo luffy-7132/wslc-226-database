@@ -30,39 +30,41 @@ class DbHelper {
   Future<Database> initDB() async {
     Directory directory = await getApplicationDocumentsDirectory();
     var dbPath = join(directory.path, "noteDB.db");
-    return openDatabase(dbPath, version: 1, onCreate: (db, version) {
-      db.execute(
-          "Create table $Note_table ( $Column_Id integer primary key autoincrement, $Column_Title text, $Column_Desc text )");
-    });
+    return openDatabase(
+      dbPath,
+      version: 1,
+      onCreate: (db, version) {
+        db.execute(
+            "Create table $Note_table ( $Column_Id integer primary key autoincrement, $Column_Title text, $Column_Desc text )");
+      },
+    );
   }
 
-  Future<void> addNotes(Notes_Model newNotes) async{
-      var db = await getDb();
-      await db.insert(Note_table, newNotes.toMap());
-  }
-
-  Future<List<Notes_Model>> fetchAllData() async{
+  Future<void> addNotes(Notes_Model newNotes) async {
     var db = await getDb();
-    List<Map<String,dynamic>> notes = await db.query(Note_table);
+    await db.insert(Note_table, newNotes.toMap());
+  }
+
+  Future<List<Notes_Model>> fetchAllData() async {
+    var db = await getDb();
+    List<Map<String, dynamic>> notes = await db.query(Note_table);
     List<Notes_Model> Listnotes = [];
 
-        for(Map<String,dynamic> note in notes){
-          Notes_Model model = Notes_Model.fromMap(note);
-          Listnotes.add(model);
-        }
-        return Listnotes;
+    for (Map<String, dynamic> note in notes) {
+      Notes_Model model = Notes_Model.fromMap(note);
+      Listnotes.add(model);
+    }
+    return Listnotes;
   }
 
-  Future<void> updateNotes (Notes_Model notes_model) async{
-     var db = await getDb();
-     await db.update(Note_table, notes_model.toMap(),
-     where: "$Column_Id = ${notes_model.id}"
-     );
+  Future<void> updateNotes(Notes_Model notes_model) async {
+    var db = await getDb();
+    await db.update(Note_table, notes_model.toMap(),
+        where: "$Column_Id = ${notes_model.id}");
   }
 
-  Future<void> deleteNotes (int id) async{
+  Future<void> deleteNotes(int id) async {
     var db = await getDb();
     await db.delete(Note_table, where: "$Column_Id = $id");
   }
-
 }

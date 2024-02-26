@@ -27,8 +27,8 @@ class NotesProvider extends ChangeNotifier {
   }
 
   /// Update Notes
-  updateNotes(Notes_Model notes_model) async {
-    await db.updateNotes(notes_model);
+  updateNotes(Notes_Model notesModel) async {
+    await db.updateNotes(notesModel);
     arrNotes = await db.fetchAllData();
     notifyListeners();
   }
