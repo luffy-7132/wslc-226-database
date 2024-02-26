@@ -1,8 +1,6 @@
 // ignore_for_file: unused_local_variable, constant_identifier_names, non_constant_identifier_names
 
-import 'dart:ffi';
 import 'dart:io';
-import 'package:http/http.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';

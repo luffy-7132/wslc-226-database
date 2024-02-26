@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:wslc_226_datbase/app_database/app_database.dart';
 
 class Notes_Model {
